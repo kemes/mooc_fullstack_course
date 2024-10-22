@@ -4,7 +4,7 @@ import axios from 'axios'
 function App() {
 	const [searchText, setSearchText] = useState('')
 	const [result, setResult] = useState([])
-	let url = "https://studies.cs.helsinki.fi/restcountries/api/all"
+	const url = "https://studies.cs.helsinki.fi/restcountries/api/all"
 
 	useEffect(() => {
 		axios
@@ -17,7 +17,7 @@ function App() {
 				axios
 				.get(`https://studies.cs.helsinki.fi/restcountries/api/name/${countries[0]}`)
 				.then(response => {
-					setResult([response.data.name.common])
+					setResult([<br />, <b>{response.data.name.common}</b>, ' ', <br />, <p>Capital: {response.data.capital[0]}</p>, <p>Population: {response.data.population}</p>, <img src={response.data.flags.png}/>])
 				})
 
 			}else if(searchText.length !== 0){
@@ -42,6 +42,7 @@ function App() {
 		<div>
 			find countries:<input onChange={handleSearch}/><br/>
 			{result}
+			
 		</div>
 	)
 }
