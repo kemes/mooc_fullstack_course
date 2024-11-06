@@ -1,0 +1,33 @@
+import ShowCountry from './ShowCountry.jsx'
+
+const ListCountries = ( {result, searchText} ) => {
+	let resLen = 0
+	let countries = []
+	result.length > 0 ? resLen = result[0].length : 0
+	if (resLen > 0) {
+		countries = result[0].filter((x) => x.name.common.toLowerCase().includes(searchText)).map((x) => x.name.common)
+	}
+	if(countries.length > 10 && searchText.length !== 0){
+		return (
+			<b>Too many result, specify another filter.</b>
+		)
+	}else if(countries.length > 1 && searchText.length !== 0){
+		return (
+				countries.map((x, i) => <li key={i}>{x}</li>)
+		)
+	}else if(countries.length === 1 && searchText.length !== 0){
+		const countryData = result[0].filter((x) => x.name.common.toLowerCase().includes(searchText))
+		console.log(countryData)
+		return (
+			<p>
+				<h1>{countryData[0].name.common}</h1>
+				capital {countryData[0].capital[0]}<br />
+				population {countryData[0].capital[0]}
+
+			</p>
+			  	
+		)
+	}
+}
+
+export default ListCountries
