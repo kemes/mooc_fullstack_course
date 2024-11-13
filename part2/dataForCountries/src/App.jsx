@@ -23,12 +23,14 @@ function App() {
 		setSearchText(event.target.value)
 	}
 
+	const handleShowCountry = (data) => {
+		setSearchText(data.toLowerCase())
+	}
 
 	return (
 		<div>
-			find countries:<input onChange={handleSearch}/><br/>
-			<ListCountries result={result} searchText={searchText} />
-			
+			find countries:<input name="searchText" value={searchText} onChange={handleSearch}/><br/>
+			<ListCountries result={result} searchText={searchText} sendSearchText={handleShowCountry}/>
 		</div>
 	)
 }

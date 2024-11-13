@@ -1,8 +1,12 @@
 import ShowCountry from './ShowCountry.jsx'
 
-const ListCountries = ( {result, searchText} ) => {
+const ListCountries = ( {result, searchText, sendSearchText} ) => {
 	let resLen = 0
 	let countries = []
+	
+	const handleClick = (country) => {
+		sendSearchText(country)
+	}
 	result.length > 0 ? resLen = result[0].length : 0
 	if (resLen > 0) {
 		countries = result[0].filter((x) => x.name.common.toLowerCase().includes(searchText)).map((x) => x.name.common)
@@ -13,11 +17,10 @@ const ListCountries = ( {result, searchText} ) => {
 		)
 	}else if(countries.length > 1 && searchText.length !== 0){
 		return (
-				countries.map((x, i) => <li key={i}>{x}</li>)
+			countries.map((x, i) => <li key={i}>{x} <button onClick={() => handleClick(x)}>show</button></li>)
 		)
 	}else if(countries.length === 1 && searchText.length !== 0){
 		const countryData = result[0].filter((x) => x.name.common.toLowerCase().includes(searchText))
-		console.log(Object.values(countryData[0].languages))
 		return (
 			<div>
 				<h1>{countryData[0].name.common}</h1>
