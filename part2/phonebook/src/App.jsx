@@ -17,8 +17,8 @@ const App = () => {
 	useEffect(() => {
 		contacts
 		.getPersons()
-		.then(initialPersons => {
-		setPersons(initialPersons)
+		.then(allPersons => {
+		setPersons(allPersons)
     })
 	}, [])
 
