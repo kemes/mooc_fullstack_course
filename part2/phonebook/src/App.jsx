@@ -54,6 +54,7 @@ const App = () => {
 			contacts
 			.postPerson(personObject)
 			.then(postedPerson => {
+				postedPerson.id = 'temp'
 				setPersons(persons.concat(postedPerson))
 				setNewName('')
 				setNewNumber('')
