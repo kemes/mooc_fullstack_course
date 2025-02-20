@@ -79,9 +79,9 @@ const App = () => {
 	const handleDeleteName = (id, event) => {
 		contacts
 		.deletePerson(id)
-		.then((delPerson) => {
-			setPersons(persons.filter(person => person.id !== delPerson.id))
-			setNotificationMessage({"msg": `Removed ${delPerson.name}`, "type": 'ok'})
+		.then((res) => {
+			setPersons(persons.filter(person => person.id !== id))
+			setNotificationMessage({"msg": `Removed ${id}`, "type": 'ok'})
 			setTimeout(() => {
 				setNotificationMessage(null)
 			}, 5000)
