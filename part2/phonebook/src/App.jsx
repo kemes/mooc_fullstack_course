@@ -60,7 +60,11 @@ const App = () => {
 				setNewNumber('')
 		})
 		.catch((error) => {
-			console.log('Failed to add object..')
+			setNotificationMessage({"msg": `Inserting data failed ${error.response.data.error}`, "type": 'error'})
+			setTimeout(() => {
+				setNotificationMessage(null)
+			}, 5000)
+			
 		})
 		}
 	}
